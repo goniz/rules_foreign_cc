@@ -43,6 +43,7 @@ def _pkgconfig_tool_impl(ctx):
         
     cflags.append("-fPIC")
     cflags.append("-Wno-int-conversion")
+    cflags.append("-Wno-implicit-function-declaration")
         
     env.update({
         "AR": absolute_ar,
