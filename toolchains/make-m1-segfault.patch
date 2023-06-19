@@ -1,11 +1,13 @@
+diff --git a/lib/glob.c b/lib/glob.c
+index c72739544..271a2d1c5 100644
 --- a/lib/glob.c
 +++ b/lib/glob.c
-@@ -136,7 +136,7 @@ my_realloc (p, n)
- #endif /* __GNU_LIBRARY__ || __DJGPP__ */
+@@ -136,7 +136,7 @@ extern int errno;
+ # define mempcpy(Dest, Src, Len) __mempcpy (Dest, Src, Len)
+ #endif
 
-
--#if !defined __alloca && !defined __GNU_LIBRARY__
+-#if !defined __alloca && !defined __GNU_LIBRARY__ 
 +#if (!defined __alloca && defined __GNU_LIBRARY__ && __linux__) || (!defined __alloca && !defined __GNU_LIBRARY__)
-
+ 
  # ifdef        __GNUC__
  #  undef alloca
