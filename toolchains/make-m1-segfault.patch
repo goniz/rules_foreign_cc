@@ -1,13 +1,11 @@
-diff --git a/lib/glob.c b/lib/glob.c
-index c72739544..271a2d1c5 100644
---- a/lib/glob.c
-+++ b/lib/glob.c
-@@ -136,7 +136,7 @@ extern int errno;
+--- a/lib/glob.c	2023-02-26 18:04:31
++++ b/lib/glob.c	2023-08-15 11:59:18
+@@ -136,7 +136,7 @@
  # define mempcpy(Dest, Src, Len) __mempcpy (Dest, Src, Len)
  #endif
-
--#if !defined __alloca && !defined __GNU_LIBRARY__ 
+ 
+-#if !defined __alloca && !defined __GNU_LIBRARY__
 +#if (!defined __alloca && defined __GNU_LIBRARY__ && __linux__) || (!defined __alloca && !defined __GNU_LIBRARY__)
  
- # ifdef        __GNUC__
+ # ifdef	__GNUC__
  #  undef alloca
