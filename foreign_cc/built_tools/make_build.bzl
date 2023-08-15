@@ -47,6 +47,8 @@ def _make_tool_impl(ctx):
         cflags = flags_info.cc
         sysroot_cflags = [flag for flag in cflags if flag.startswith("--sysroot=")]
         non_sysroot_cflags = [flag for flag in cflags if not flag.startswith("--sysroot=")]
+        # Workaround for make segfaulting on mac m1: Use internal glob() function
+        non_sysroot_cflags.append("-DGLOB_INTERFACE_VERSION=0")
 
         ld_path = tools_info.cxx_linker_executable
         ldflags = flags_info.cxx_linker_executable
