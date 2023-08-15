@@ -53,6 +53,9 @@ def _make_tool_impl(ctx):
         sysroot_ldflags = [flag for flag in ldflags if flag.startswith("--sysroot=")]
         non_sysroot_ldflags = [flag for flag in ldflags if not flag.startswith("--sysroot=")]
 
+        # Workaround for make segfaulting on mac m1
+        non_sysroot_ldflags.remove('-lm')
+
         # Make's build script does not forward CFLAGS to all compiler and linker
         # invocations, so we append --sysroot flags directly to CC and LD.
         absolute_cc = absolutize(ctx.workspace_name, cc_path, True)
