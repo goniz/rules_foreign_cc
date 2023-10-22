@@ -265,7 +265,7 @@ def _create_configure_script(configureParameters):
         no_toolchain_file = no_toolchain_file,
         user_cache = dict(ctx.attr.cache_entries),
         user_env = expand_locations_and_make_variables(ctx, ctx.attr.env, "env", data),
-        options = attrs.generate_args,
+        options = expand_locations_and_make_variables(ctx, ctx.attr.generate_args, "generate_args", data),
         cmake_commands = cmake_commands,
         cmake_prefix = prefix,
         include_dirs = inputs.include_dirs,
@@ -418,6 +418,7 @@ cmake = rule(
         "@rules_foreign_cc//foreign_cc/private/framework:shell_toolchain",
         "@bazel_tools//tools/cpp:toolchain_type",
     ],
+    provides = [CcInfo],
     # TODO: Remove once https://github.com/bazelbuild/bazel/issues/11584 is closed and the min supported
     # version is updated to a release of Bazel containing the new default for this setting.
     incompatible_use_toolchain_transition = True,
